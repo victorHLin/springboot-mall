@@ -1,27 +1,26 @@
-package com.victor.springbootmall.model;
+package com.victor.springbootmall.dto;
 
 import com.victor.springbootmall.constant.ProductCategory;
+import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+public class ProductRequest {
 
-public class Product {
-    private Integer productId;
+    @NotNull
     private String productName;
+
+    @NotNull
     private ProductCategory category;
+
+    @NotNull
     private String imageUrl;
+
+    @NotNull
     private Integer price;
+
+    @NotNull
     private Integer stock;
+
     private String description;
-    private Date createTime;
-    private Date lastModifiedDate;
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
     public String getProductName() {
         return productName;
@@ -69,21 +68,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 }
