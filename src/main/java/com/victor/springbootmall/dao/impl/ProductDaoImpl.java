@@ -77,6 +77,15 @@ public class ProductDaoImpl implements ProductDao {
         map.put("lastModifiedTime", now);
 
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map));
+    }
 
+    @Override
+    public void deleteProductById(Integer productId) {
+        String sql = "DELETE FROM product WHERE product_id = :productId";
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("productId", productId);
+
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map));
     }
 }
