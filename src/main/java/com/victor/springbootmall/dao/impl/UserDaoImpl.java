@@ -1,6 +1,7 @@
 package com.victor.springbootmall.dao.impl;
 
 import com.victor.springbootmall.dao.UserDao;
+import com.victor.springbootmall.dto.UserLoginRequest;
 import com.victor.springbootmall.dto.UserRegisterRequest;
 import com.victor.springbootmall.model.User;
 import com.victor.springbootmall.rowMapper.UserRowMapper;

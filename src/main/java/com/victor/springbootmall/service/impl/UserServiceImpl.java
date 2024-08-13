@@ -1,6 +1,7 @@
 package com.victor.springbootmall.service.impl;
 
 import com.victor.springbootmall.dao.UserDao;
+import com.victor.springbootmall.dto.UserLoginRequest;
 import com.victor.springbootmall.dto.UserRegisterRequest;
 import com.victor.springbootmall.model.User;
 import com.victor.springbootmall.service.UserService;
@@ -33,5 +34,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer userId) {
         return userDao.getUserById(userId);
+    }
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if(user == null){
+            log.warn("Account with email {} not exist", userLoginRequest.getEmail())  ;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if(!user.getPassword().equals(userLoginRequest.getPassword())){
+            log.warn("Email {} doesn't match the password", userLoginRequest.getEmail())  ;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        return user;
     }
 }
