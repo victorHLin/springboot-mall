@@ -9,7 +9,7 @@ public class User {
     private String email;
     @JsonIgnore
     private String password;
-    private Date creartedDate;
+    private Date createdDate;
     private Date lastModifiedDate;
 
     public Integer getUserId() {
@@ -36,12 +36,12 @@ public class User {
         this.password = password;
     }
 
-    public Date getCreartedDate() {
-        return creartedDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreartedDate(Date creartedDate) {
-        this.creartedDate = creartedDate;
+    public void setCreatedDate(Date creartedDate) {
+        this.createdDate = creartedDate;
     }
 
     public Date getLastModifiedDate() {
