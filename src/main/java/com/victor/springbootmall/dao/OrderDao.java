@@ -1,5 +1,6 @@
 package com.victor.springbootmall.dao;
 
+import com.victor.springbootmall.dto.OrderQueryPrams;
 import com.victor.springbootmall.model.Order;
 import com.victor.springbootmall.model.OrderItem;
 
@@ -13,4 +14,8 @@ public interface OrderDao {
     Order getOrderById(Integer orderId);
 
     List<OrderItem> getOrderItemsByOrderId(Integer orderId);
+
+    List<Order> getOrders(OrderQueryPrams orderQueryPrams);
+
+    Integer countOrder(OrderQueryPrams orderQueryPrams);
 }
