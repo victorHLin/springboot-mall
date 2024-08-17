@@ -4,6 +4,7 @@ import com.victor.springbootmall.dao.OrderDao;
 import com.victor.springbootmall.dao.ProductDao;
 import com.victor.springbootmall.dto.BuyItem;
 import com.victor.springbootmall.dto.CreateOrderRequest;
+import com.victor.springbootmall.model.Order;
 import com.victor.springbootmall.model.OrderItem;
 import com.victor.springbootmall.model.Product;
 import com.victor.springbootmall.service.OrderService;
@@ -30,12 +31,13 @@ public class OrderServiceImpl implements OrderService {
 
         for(BuyItem buyItem : createOrderRequest.getBuyItemList()){
             Product product = productDao.getProductById(buyItem.getProductId());
-            totalAmount += buyItem.getQuantity() * product.getPrice();
+            Integer productAmount = buyItem.getQuantity() * product.getPrice();
+            totalAmount += productAmount;
 
             OrderItem orderItem = new OrderItem();
             orderItem.setProductId(buyItem.getProductId());
             orderItem.setQuantity(buyItem.getQuantity());
-            orderItem.setAmount(totalAmount);
+            orderItem.setAmount(productAmount);
 
             orderItemList.add(orderItem);
         }
@@ -45,5 +47,15 @@ public class OrderServiceImpl implements OrderService {
         orderDao.createOrderItem(orderId, orderItemList);
 
         return orderId;
+    }
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItems = orderDao.getOrderItemsByOrderId(orderId);
+        order.setOrderItemsList(orderItems);
+
+        return order;
     }
 }
